@@ -1,7 +1,14 @@
+import useFetch from "./useFetch";
+import PeopleList from "./PeopleList";
+
 const Main = () => {
+    const { data: people, isPending, error} = useFetch('http://localhost:8000/people');
+
     return ( 
-        <div>
-            Hello
+        <div className="main">
+            { error && <div>{ error }</div>}
+            { isPending && <div>Loading</div>}
+            { people && <PeopleList people={people} /> }
         </div>
      );
 }
