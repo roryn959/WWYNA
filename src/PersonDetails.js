@@ -2,20 +2,34 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 import useFetch from "./useFetch.js";
+import { useEffect, useState } from 'react';
 
 
 const PersonDetails = () => {
     const { id } = useParams();
     const {data: person, error, isPending } = useFetch('http://localhost:8000/people/' + id);
+    const navigator = useNavigate();
 
-    const conditionalDisplay = ( (s) => {
+    const conditionalDisplay = (s) => {
         if (s === ''){
             return 'text-muted';
         } else {
             return '';
         }
-    })
+    }
+
+    const handleDelete = () => {
+        fetch(
+            'http://localhost:8000/people/' + person.id,
+            {
+                method: 'DELETE' 
+            }
+        ).then(() => {
+            navigator('/');
+        })
+    }
 
     return ( 
         <div className="person-details">
@@ -102,10 +116,10 @@ const PersonDetails = () => {
                     </Row>
                     <hr class="my-4"/>
                 </Container>
-                <div className='d-flex justify-content-center'>
+                <div className='d-flex justify-content-center mb-4'>
                     <div className="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button type="button" class="btn btn-secondary">Edit</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-danger" onclick={handleDelete}>Delete</button>
                     </div>
                 </div>
             </div>
