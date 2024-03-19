@@ -1,16 +1,55 @@
-import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import NamesInput from './NamesInput';
 import DetailsInput from './DetailsInput';
 import InputList from './InputList';
+import FurtherText from "./FurtherText";
 
 const CreatePerson = () => {
-    const [characteristics, setCharacteristics] = useState([]);
+    const fNameProps = useState('');
+    const sNameProps = useState('');
+    const nickNameProps = useState('');
+    const whereMetProps = useState('');
+    const workStudyProps = useState('');
+    const interestsProps = useState([]);
+    const characteristicsProps = useState([]);
+    const furtherProps = useState('');
+
     const navigator = useNavigate();
 
-    return ( 
+    const handleSubmit = e => {
+
+        let retrieveVal = item => {
+            console.log('$$$');
+            console.log(item);
+            return item.val;
+        }
+    
+        const person = {
+            'fName': fNameProps[0],
+            'sName': sNameProps[0],
+            'nickName': nickNameProps[0],
+            'whereMet': whereMetProps[0],
+            'workStudy': workStudyProps[0],
+            'interests': interestsProps[0].map(retrieveVal),
+            'characteristics': characteristicsProps[0].map(retrieveVal),
+            'further': furtherProps[0]
+        }
+
+        fetch(
+            'http://localhost:8000/people',
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json'},
+                body: JSON.stringify(person)
+            }
+        ).then(() => {
+            navigator('/');
+        })
+    }
+
+    return (
         <Container fluid>
             <div className="container container-fluid m-3">
                 <h1 className='display-1 '>New Entry</h1>
@@ -18,9 +57,20 @@ const CreatePerson = () => {
             <hr className='my-4'/>
             <div className='container container-fluid mx-3'>
                 <form >
-                    <NamesInput fName={''} sName={''} nickName={''} />
-                    <DetailsInput whereMet={'ghgj'} workStudy={''} />
-                    <InputList arr={[{id: 1, val:'one'}, {id: 2, val: 'two'}]} />
+                    <NamesInput  fNameProps={ fNameProps } sNameProps={ sNameProps } nickNameProps={ nickNameProps }/>
+                    <DetailsInput whereMetProps={ whereMetProps } workStudyProps={ workStudyProps } />
+                    <InputList name={'Interests'} arrProps={ interestsProps } />
+                    <InputList name={'Characteristics'} arrProps={ characteristicsProps } />
+                    <FurtherText furtherProps={ furtherProps } />
+                    <Container fluid>
+                        <button
+                            className='btn btn-outline-primary mb-3'
+                            onClick={e => {
+                                e.preventDefault();
+                                handleSubmit();
+                            }}
+                        >Submit</button>
+                    </Container>
                 </form>
             </div>
         </Container>

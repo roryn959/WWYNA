@@ -4,7 +4,6 @@ import Container from 'react-bootstrap/Container';
 import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import useFetch from "./useFetch.js";
-import { useEffect, useState } from 'react';
 
 
 const PersonDetails = () => {
@@ -53,7 +52,7 @@ const PersonDetails = () => {
                     <h1 className={ `display-3 text-center ` + conditionalDisplay(person.nickName) }>
                         { !person.nickName && 'Nickname' }{ person.nickName }
                     </h1>
-                    <hr class="my-4"/>
+                    <hr className="my-4"/>
                 </Container>
                 <Container fluid>
                     <Row>
@@ -114,12 +113,12 @@ const PersonDetails = () => {
                             </div>
                         </Col>
                     </Row>
-                    <hr class="my-4"/>
+                    <hr className="my-4"/>
                 </Container>
                 <div className='d-flex justify-content-center mb-4'>
                     <div className="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" class="btn btn-secondary">Edit</button>
-                        <button type="button" class="btn btn-danger" onclick={handleDelete}>Delete</button>
+                        <button type="button" className="btn btn-secondary">Edit</button>
+                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
                     </div>
                 </div>
             </div>

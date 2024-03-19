@@ -1,10 +1,15 @@
-import { useState } from "react";
 import Container from "react-bootstrap/Container";
 
-const InputList = ({arr: prop_arr}) => {
-    const [arr, setArr] = useState(prop_arr);
+const InputList = (props) => {
+    const [arr, setArr] = props.arrProps;
+    const name = props.name;
 
-    let arrIndex = 3;
+    let arrIndex;
+    if (arr.length>0){
+        arrIndex = arr[arr.length-1].id+1;
+    } else {
+        arrIndex = 0;
+    }
 
     const handleAdd = () => {
         setArr([
@@ -23,7 +28,6 @@ const InputList = ({arr: prop_arr}) => {
                 return i
             }
         }));
-        console.log(arr);
     }
     const handleDelete = (id) => {
         setArr(
@@ -33,38 +37,50 @@ const InputList = ({arr: prop_arr}) => {
 
     return ( 
         <Container fluid>
-            <ul>
-                <div className="vertical-input-group">
-                    {
-                        arr.map((item) => (
-                            <div className='input-group'>
-                                <li key={item.id}>
+            <label className='form-label'>
+                { name }
+            </label>
+            <ul className='list-group mb-4'>
+                {
+                    arr.map(item => (
+                            <li key={ item.id } className='list-group-item'>
+                                <div className="input-group">
                                     <input
                                         type='text'
-                                        className='form-control'
-                                        placeholder="Add an interest..."
+                                        className='form-control nohl'
+                                        placeholder='Add an interest...'
                                         value={ item.val }
-                                        onChange={(e) => {
+                                        onChange={e => {
                                             handleEdit({
-                                                ...arr,
-                                                item: e.target.value
+                                                ...item,
+                                                val: e.target.value
                                             });
                                         }}
                                     />
-                                </li>
-                            </div>
-                        ))
-                    }
-                    <div className='input-group'>
+                                    <button
+                                        className="btn btn-outline-danger"
+                                        onClick={ e =>{
+                                            e.preventDefault();
+                                            handleDelete(
+                                                item.id
+                                            );
+                                        }}
+                                    >Delete</button>
+                                </div>
+                            </li>
+                    ))
+                }
+                <li className='list-group-item'>
+                    <div className='input-group-item'>
                         <button
-                            className='btn'
-                            onClick={ (e) => {
+                            className='btn btn-outline-secondary'
+                            onClick={ e => {
                                 e.preventDefault();
                                 handleAdd();
                             } }
-                        >Add</button>
+                        >+</button>
                     </div>
-                </div>
+                </li>
             </ul>
         </Container>
      );

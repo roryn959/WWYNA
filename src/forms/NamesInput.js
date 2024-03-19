@@ -1,10 +1,10 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 
-const NamesInput = ({fName: prop_fName, sName: prop_sName, nickName: prop_nickName}) => {
-    const [fName, setFName] = useState(prop_fName);
-    const [sName, setSName] = useState(prop_sName);
-    const [nickName, setNickName] = useState(prop_nickName);
+const NamesInput = (props) => {
+    const [fName, setFName] = props.fNameProps;
+    const [sName, setSName] = props.sNameProps;
+    const [nickName, setNickName] = props.nickNameProps;
 
     return ( 
         <Container fluid>

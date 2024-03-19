@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 
-const DetailsInput = ({whereMet: prop_whereMet, workStudy: prop_workStudy}) => {
-    const [whereMet, setWhereMet] = useState(prop_whereMet);
-    const [workStudy, setWorkStudy] = useState(prop_workStudy);
+const DetailsInput = (props) => {
+    const [whereMet, setWhereMet] = props.whereMetProps;
+    const [workStudy, setWorkStudy] = props.workStudyProps;
 
     return ( 
         <Container fluid>
