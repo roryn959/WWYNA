@@ -19,12 +19,6 @@ const CreatePerson = () => {
     const navigator = useNavigate();
 
     const handleSubmit = e => {
-
-        let retrieveVal = item => {
-            console.log('$$$');
-            console.log(item);
-            return item.val;
-        }
     
         const person = {
             'fName': fNameProps[0],
@@ -32,8 +26,8 @@ const CreatePerson = () => {
             'nickName': nickNameProps[0],
             'whereMet': whereMetProps[0],
             'workStudy': workStudyProps[0],
-            'interests': interestsProps[0].map(retrieveVal),
-            'characteristics': characteristicsProps[0].map(retrieveVal),
+            'interests': interestsProps[0].map(item => (item.val)),
+            'characteristics': characteristicsProps[0].map(item => (item.val)),
             'further': furtherProps[0]
         }
 
