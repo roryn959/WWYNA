@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Main from './Main';
 import NavComponent from './NavComponent';
 import PersonDetails from './PersonDetails';
-import CreatePerson from './CreatePerson';
+import CreatePerson from './forms/CreatePerson';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 

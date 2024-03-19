@@ -1,0 +1,52 @@
+import { useState } from "react";
+import Container from "react-bootstrap/Container";
+
+const NamesInput = ({fName: prop_fName, sName: prop_sName, nickName: prop_nickName}) => {
+    const [fName, setFName] = useState(prop_fName);
+    const [sName, setSName] = useState(prop_sName);
+    const [nickName, setNickName] = useState(prop_nickName);
+
+    return ( 
+        <Container fluid>
+            <label htmlFor='names' className='form-label'><h4>Names</h4></label>
+            <div className="input-group" id='names'>
+                <div className="form-floating">
+                    <input 
+                        type='text'
+                        className='form-control'
+                        id='firstName'
+                        placeholder='First Name'
+                        value={ fName }
+                        onChange={ (e) => setFName(e.target.value)}
+                    />
+                    <label htmlFor='firstName' className='text-secondary'>First Name</label>
+                </div>
+                <div className="form-floating">
+                    <input
+                        type='text'
+                        className='form-control'
+                        id='secondName'
+                        placeholder='Second Name'
+                        value={ sName }
+                        onChange={ (e) => setSName(e.target.value)}
+                    />
+                    <label htmlFor='secondName' className='text-secondary'>Second Name</label>
+                </div>
+                <div className="form-floating">
+                    <input 
+                        type='text'
+                        className='form-control'
+                        id='nickName'
+                        placeholder='Nickname'
+                        value={ nickName }
+                        onChange={ (e) => setNickName(e.target.value)}
+                    />
+                    <label htmlFor='nickName' className='text-secondary'>Nickname</label>
+                </div>
+            </div>
+            <div className="form-text mx-2 mb-4">Please input at least one of the above.</div>
+        </Container>
+     );
+}
+ 
+export default NamesInput;
