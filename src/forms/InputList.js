@@ -47,7 +47,7 @@ const InputList = (props) => {
                                 <div className="input-group">
                                     <input
                                         type='text'
-                                        className='form-control nohl'
+                                        className='form-control'
                                         placeholder='Add an interest...'
                                         value={ item.val }
                                         onChange={e => {

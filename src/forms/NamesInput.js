@@ -13,7 +13,7 @@ const NamesInput = (props) => {
                 <div className="form-floating">
                     <input 
                         type='text'
-                        className='form-control'
+                        className='form-control needs-valid'
                         id='firstName'
                         placeholder='First Name'
                         value={ fName }
@@ -24,7 +24,7 @@ const NamesInput = (props) => {
                 <div className="form-floating">
                     <input
                         type='text'
-                        className='form-control'
+                        className='form-control needs-valid'
                         id='secondName'
                         placeholder='Second Name'
                         value={ sName }
@@ -35,7 +35,7 @@ const NamesInput = (props) => {
                 <div className="form-floating">
                     <input 
                         type='text'
-                        className='form-control'
+                        className='form-control needs-valid'
                         id='nickName'
                         placeholder='Nickname'
                         value={ nickName }

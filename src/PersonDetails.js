@@ -1,13 +1,12 @@
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
+import { Row, Col, Container} from 'react-bootstrap';
 import { useParams } from "react-router";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import useFetch from "./useFetch.js";
 
 
 const PersonDetails = () => {
     const { id } = useParams();
+    const { path } = useLocation();
     const {data: person, error, isPending } = useFetch('http://localhost:8000/people/' + id);
     const navigator = useNavigate();
 
@@ -116,10 +115,10 @@ const PersonDetails = () => {
                     <hr className="my-4"/>
                 </Container>
                 <div className='d-flex justify-content-center mb-4'>
-                    <div className="btn-group" role="group" aria-label="Basic mixed styles example">
-                        <button type="button" className="btn btn-secondary">Edit</button>
-                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Delete</button>
-                    </div>
+                    <Link to={ `editPerson` }>
+                        <button type="button" className="btn btn-secondary me-2">Edit</button>
+                    </Link>
+                    <button type="button" className="btn btn-danger mw-2" onClick={handleDelete}>Delete</button>
                 </div>
             </div>
             }

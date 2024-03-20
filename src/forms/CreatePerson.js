@@ -18,8 +18,16 @@ const CreatePerson = () => {
 
     const navigator = useNavigate();
 
+    const flagNameRequired = () => {
+        let nameFields = document.querySelectorAll('.needs-valid');
+        
+        Array.prototype.slice.call(nameFields)
+            .forEach(f => {
+                f.classList.add('is-invalid')
+            });
+    }
+
     const handleSubmit = e => {
-    
         const person = {
             'fName': fNameProps[0],
             'sName': sNameProps[0],
@@ -29,6 +37,12 @@ const CreatePerson = () => {
             'interests': interestsProps[0].map(item => (item.val)),
             'characteristics': characteristicsProps[0].map(item => (item.val)),
             'further': furtherProps[0]
+        }
+
+        if (!!!person.fName && !!!person.sName && !!!person.nickName){
+            flagNameRequired();
+            e.stopPropagation();
+            return;
         }
 
         fetch(
@@ -50,7 +64,7 @@ const CreatePerson = () => {
             </div>
             <hr className='my-4'/>
             <div className='container container-fluid mx-3'>
-                <form >
+                <form noValidate>
                     <NamesInput  fNameProps={ fNameProps } sNameProps={ sNameProps } nickNameProps={ nickNameProps }/>
                     <DetailsInput whereMetProps={ whereMetProps } workStudyProps={ workStudyProps } />
                     <InputList name={'Interests'} arrProps={ interestsProps } />
@@ -61,7 +75,7 @@ const CreatePerson = () => {
                             className='btn btn-outline-primary mb-3'
                             onClick={e => {
                                 e.preventDefault();
-                                handleSubmit();
+                                handleSubmit(e);
                             }}
                         >Submit</button>
                     </Container>

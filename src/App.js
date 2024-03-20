@@ -5,6 +5,7 @@ import PersonDetails from './PersonDetails';
 import CreatePerson from './forms/CreatePerson';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import EditPerson from './forms/EditPerson';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path='/' element={ <Main /> } />
           <Route path='/people/:id' element={ <PersonDetails /> } />
           <Route path='/createPerson' element={ <CreatePerson /> } />
+          <Route path='/people/:id/editPerson' element={ <EditPerson /> } />
         </Routes>
       </div>
     </Router>

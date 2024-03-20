@@ -11,20 +11,21 @@ const PeopleList = ({ people }) => {
                     <li key={ person.id } className='list-group-item list-group-item-action'>
                         <Link to={ `/people/${person.id}` }>
                             <Row>
-                                <Col md='auto'>
-                                    <h1 className='display-5'>{ person.fName } { person.sName }</h1>
-                                </Col>
-                                <Col className='m-auto'>
-                                    <p className='mb-0 text-secondary'>{ person.workStudy }</p>
+                                <Col md=''>
+                                    <h1 className='display-5'>{ person.fName } {!!person.nickName && <i>"{person.nickName}"</i>} { person.sName }</h1>
                                 </Col>
                             </Row>
                             <Row>
-                                <Col md='auto'>
-                                    <h3>{ person.nickName }</h3>
+                                { !!person.workStudy &&
+                                <Col md='auto' className=''>
+                                    <p className='mb-0 text-secondary'>Work/study:{ person.workStudy } </p>
                                 </Col>
-                                <Col className='m-auto'>
+                                }
+                                { !!person.whereMet &&
+                                <Col className=''>
                                     <p className='mb-0 text-secondary'>Met at { person.whereMet }</p>
                                 </Col>
+                                }
                             </Row>
                         </Link>
                     </li>
