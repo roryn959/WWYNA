@@ -1,14 +1,15 @@
 import { Row, Col, Container} from 'react-bootstrap';
 import { useParams } from "react-router";
-import { useNavigate, Link, useLocation } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import useFetch from "./useFetch.js";
-
 
 const PersonDetails = () => {
     const { id } = useParams();
-    const { path } = useLocation();
     const {data: person, error, isPending } = useFetch('http://localhost:8000/people/' + id);
     const navigator = useNavigate();
+
+    let intIdx = 0;
+    let charIdx = 0;
 
     const conditionalDisplay = (s) => {
         if (s === ''){
@@ -88,7 +89,7 @@ const PersonDetails = () => {
                                 <ul className="list-group">
                                     {
                                         person.interests.map((interest) => (
-                                            <li className="list-group-item"><h3 className='text-center'>{ interest }</h3></li>
+                                            <li className="list-group-item" key={ intIdx++ }><h3 className='text-center'>{ interest }</h3></li>
                                         ))
                                     }
                                 </ul>
@@ -105,7 +106,7 @@ const PersonDetails = () => {
                                 <ul className="list-group">
                                     {
                                         person.characteristics.map((characteristic) => (
-                                            <li className="list-group-item"><h3 className='text-center'>{ characteristic }</h3></li>
+                                            <li className="list-group-item" key={ charIdx++ }><h3 className='text-center'>{ characteristic }</h3></li>
                                         ))
                                     }
                                 </ul>

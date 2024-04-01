@@ -1,7 +1,8 @@
 import Container from "react-bootstrap/Container";
 
 const InputList = (props) => {
-    const [arr, setArr] = props.arrProps;
+    const arr = props.arr;
+    const setArr = props.setArr;
     const name = props.name;
 
     let arrIndex;
@@ -48,7 +49,7 @@ const InputList = (props) => {
                                     <input
                                         type='text'
                                         className='form-control'
-                                        placeholder='Add an interest...'
+                                        placeholder={ 'Add ' + name + '...' }
                                         value={ item.val }
                                         onChange={e => {
                                             handleEdit({

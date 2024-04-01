@@ -1,9 +1,10 @@
-import { useState } from "react";
 import Container from "react-bootstrap/Container";
 
 const DetailsInput = (props) => {
-    const [whereMet, setWhereMet] = props.whereMetProps;
-    const [workStudy, setWorkStudy] = props.workStudyProps;
+    const whereMet = props.whereMet;
+    const setWhereMet = props.setWhereMet;
+    const workStudy = props.workStudy;
+    const setWorkStudy = props.setWorkStudy;
 
     return ( 
         <Container fluid>

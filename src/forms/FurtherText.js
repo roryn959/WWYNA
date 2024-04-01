@@ -1,7 +1,8 @@
 import Container from "react-bootstrap/Container";
 
 const FurtherText = (props) => {
-    const [further, setFurther] = props.furtherProps;
+    const further = props.further;
+    const setFurther = props.setFurther;
 
     return ( 
         <Container fluid>

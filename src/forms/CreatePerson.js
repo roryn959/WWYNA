@@ -7,14 +7,14 @@ import InputList from './InputList';
 import FurtherText from "./FurtherText";
 
 const CreatePerson = () => {
-    const fNameProps = useState('');
-    const sNameProps = useState('');
-    const nickNameProps = useState('');
-    const whereMetProps = useState('');
-    const workStudyProps = useState('');
-    const interestsProps = useState([]);
-    const characteristicsProps = useState([]);
-    const furtherProps = useState('');
+    const [fName, setFName] = useState('');
+    const [sName, setSName] = useState('');
+    const [nickName, setNickName] = useState('');
+    const [whereMet, setWhereMet] = useState('');
+    const [workStudy, setWorkStudy] = useState('');
+    const [interests, setInterests] = useState([]);
+    const [characteristics, setCharacteristics] = useState([]);
+    const [further, setFurther] = useState('');
 
     const navigator = useNavigate();
 
@@ -29,14 +29,14 @@ const CreatePerson = () => {
 
     const handleSubmit = e => {
         const person = {
-            'fName': fNameProps[0],
-            'sName': sNameProps[0],
-            'nickName': nickNameProps[0],
-            'whereMet': whereMetProps[0],
-            'workStudy': workStudyProps[0],
-            'interests': interestsProps[0].map(item => (item.val)),
-            'characteristics': characteristicsProps[0].map(item => (item.val)),
-            'further': furtherProps[0]
+            'fName': fName,
+            'sName': sName,
+            'nickName': nickName,
+            'whereMet': whereMet,
+            'workStudy': workStudy,
+            'interests': interests.map(item => (item.val)),
+            'characteristics': characteristics.map(item => (item.val)),
+            'further': further
         }
 
         if (!!!person.fName && !!!person.sName && !!!person.nickName){
@@ -65,19 +65,26 @@ const CreatePerson = () => {
             <hr className='my-4'/>
             <div className='container container-fluid mx-3'>
                 <form noValidate>
-                    <NamesInput  fNameProps={ fNameProps } sNameProps={ sNameProps } nickNameProps={ nickNameProps }/>
-                    <DetailsInput whereMetProps={ whereMetProps } workStudyProps={ workStudyProps } />
-                    <InputList name={'Interests'} arrProps={ interestsProps } />
-                    <InputList name={'Characteristics'} arrProps={ characteristicsProps } />
-                    <FurtherText furtherProps={ furtherProps } />
+                    <NamesInput  fName={ fName } setFName={ setFName } sName={ sName } setSName={ setSName } nickName={ nickName } setNickName={ setNickName }/>
+                    <DetailsInput whereMet={ whereMet } setWhereMet={ setWhereMet } workStudy={ workStudy } setWorkStudy={ setWorkStudy }/>
+                    <InputList name={'Interests'} arr={ interests } setArr={ setInterests }/>
+                    <InputList name={'Characteristics'} arr={ characteristics } setArr={ setCharacteristics }/>
+                    <FurtherText further={ further } setFurther={ setFurther }/>
                     <Container fluid>
                         <button
-                            className='btn btn-outline-primary mb-3'
+                            className='btn btn-primary mb-3 me-2'
                             onClick={e => {
                                 e.preventDefault();
                                 handleSubmit(e);
                             }}
                         >Submit</button>
+                        <button
+                            className='btn btn-secondary mb-3'
+                            onClick={e => {
+                                e.preventDefault();
+                                navigator('/');
+                            }}
+                        >Cancel</button>
                     </Container>
                 </form>
             </div>
