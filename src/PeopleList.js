@@ -18,7 +18,7 @@ const PeopleList = ({ people }) => {
                             <Row>
                                 { !!person.workStudy &&
                                 <Col md='auto' className=''>
-                                    <p className='mb-0 text-secondary'>Work/study:{ person.workStudy } </p>
+                                    <p className='mb-0 text-secondary'>Work/study: { person.workStudy } </p>
                                 </Col>
                                 }
                                 { !!person.whereMet &&

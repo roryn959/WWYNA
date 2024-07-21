@@ -1,4 +1,7 @@
 // npx json-server --watch data/db.json --port 8000
+// atlas pword: wySRvG0rhRMuGf6A
+// connection string: mongodb+srv://roryn959:wySRvG0rhRMuGf6A@wwyna.uyrqbi9.mongodb.net/?retryWrites=true&w=majority&appName=WWYNA
+// api key: e1wiGdBaewUSgUYzdfe5iD5hPFIgPxpM19O7ivNzLYkdPPcJnXt1vqIpxWrjgePN
 
 import { useState, useEffect } from 'react';
 

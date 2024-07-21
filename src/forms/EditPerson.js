@@ -6,7 +6,7 @@ import NamesInput from './NamesInput';
 import DetailsInput from './DetailsInput';
 import InputList from './InputList';
 import FurtherText from "./FurtherText";
-import useFetch from "../useFetch";
+import useFetch from "../hooks/useFetch";
 
 const EditPerson = () => {
     const { id } = useParams();

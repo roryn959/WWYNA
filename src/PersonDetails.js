@@ -1,7 +1,7 @@
 import { Row, Col, Container} from 'react-bootstrap';
 import { useParams } from "react-router";
 import { useNavigate, Link} from "react-router-dom";
-import useFetch from "./useFetch.js";
+import useFetch from "./hooks/useFetch.js";
 
 const PersonDetails = () => {
     const { id } = useParams();
