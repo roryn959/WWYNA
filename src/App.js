@@ -15,7 +15,7 @@ function App() {
   if (!token){
     return (
       <div className="App">
-        <NavComponent token={token}/>
+        <NavComponent token={token} setToken={setToken}/>
         <Login setToken={setToken}/>
       </div>
     );
@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavComponent token={token}/>
+        <NavComponent token={token} setToken={setToken}/>
         <Routes>
           <Route exact path='/' element={ <Main /> } />
           <Route path='/people/:id' element={ <PersonDetails /> } />

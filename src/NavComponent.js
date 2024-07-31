@@ -1,16 +1,23 @@
+import { Navbar, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 
 const NavComponent = (props) => {
+    const [token, setToken] = [props.token, props.setToken];
+
+    const handleLogout = () => {
+        setToken(null);
+        localStorage.removeItem('token');
+    }
 
     return ( 
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
                 <Navbar.Brand href="/">What Was Your Name Again?</Navbar.Brand>
-                <Nav className="me-0">
-                    <Nav.Link href="#">{ props.token }</Nav.Link>
-                </Nav>
+                { !!token &&
+                <NavDropdown align='end' title={ token }>
+                    <NavDropdown.Item onClick={ handleLogout }>Log out</NavDropdown.Item>
+                </NavDropdown>
+                }
             </Container>
         </Navbar>
      );
