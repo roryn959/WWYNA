@@ -1,50 +1,53 @@
 import { useRef, useState, useEffect } from 'react';
 
 const Login = (props) => {
+    const token = props.token;
     const setToken = props.setToken
-    const userRef = useRef();
+    const usernameRef = useRef();
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     useEffect(() => {
-        userRef.current.focus();
+        usernameRef.current.focus();
     }, []);
 
     useEffect(() => {
-    }, [user, pwd]);
+    }, [username, password]);
 
     const loginUser = async (credentials) => {
-        return fetch('http://localhost:8080/login', {
+        const res = await fetch('http://localhost:8080/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(credentials)
-        }).then(data => data.json())
+        });
+        const token = await res.text();
+        return token;
+
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginUser({user, pwd});
+        const token = await loginUser({username, password});
         setToken(token);
     }
-    
 
     return ( 
         <div>
             <h1 className='ms-3 my-3'>Sign In</h1>
-            <form novalidate onSubmit={handleSubmit}>
+            <form noValidate onSubmit={handleSubmit}>
                 <div className='form-floating mb-3 mx-3'>
                     <input
                         type='text'
                         className='form-control needs-valid'
                         id='username'
-                        ref={userRef}
+                        ref={usernameRef}
                         placeholder='Username'
                         autoComplete='off'
-                        onChange={(e) => setUser(e.target.value)}
-                        value={user}
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}
                         required
                     />
                     <label htmlFor='username' className='text-secondary'>Username:</label>
@@ -56,8 +59,8 @@ const Login = (props) => {
                         id='password'
                         placeholder='Password'
                         autoComplete='off'
-                        onChange={(e) => setPwd(e.target.value)}
-                        value={pwd}
+                        onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                         required
                     />
                     <label htmlFor='password' className='text-secondary'>Password:</label>

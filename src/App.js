@@ -10,12 +10,12 @@ import './index.css';
 import EditPerson from './forms/EditPerson';
 
 function App() {
-  const { token, setToken } = useToken();
+  const [token, setToken] = useToken();
 
   if (!token){
     return (
       <div className="App">
-        <NavComponent />
+        <NavComponent token={token}/>
         <Login setToken={setToken}/>
       </div>
     );
@@ -24,7 +24,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavComponent />
+        <NavComponent token={token}/>
         <Routes>
           <Route exact path='/' element={ <Main /> } />
           <Route path='/people/:id' element={ <PersonDetails /> } />
