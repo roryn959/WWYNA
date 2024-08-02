@@ -8,8 +8,6 @@ app.use(express.json());
 DB_URL = 'http://localhost:8000/logins';
 
 const authenticate = async (username, password) => {
-    console.log('Authenticating', username, password);
-
     const res = await fetch(DB_URL);
     const json = await res.json();
     

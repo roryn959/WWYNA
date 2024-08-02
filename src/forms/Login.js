@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
 
 const Login = (props) => {
-    const token = props.token;
     const setToken = props.setToken
     const usernameRef = useRef();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
 
     useEffect(() => {
         usernameRef.current.focus();
@@ -15,23 +15,26 @@ const Login = (props) => {
     useEffect(() => {
     }, [username, password]);
 
-    const loginUser = async (credentials) => {
-        const res = await fetch('http://localhost:8080/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        });
-        const token = await res.text();
-        return token;
-
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await loginUser({username, password});
-        setToken(token);
+        try {
+            const res = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username, password})
+            });
+            const text = await res.text();
+            if (!res.ok){
+                setErrorMsg(text);
+            } else {
+                setToken(text);
+            }
+        } catch (error) {
+            console.warn(error);
+            setErrorMsg('Sorry - something went wrong...');
+        }
     }
 
     return ( 
@@ -65,7 +68,7 @@ const Login = (props) => {
                     />
                     <label htmlFor='password' className='text-secondary'>Password:</label>
                 </div>
-
+                <p className='mx-3 text-danger'>{ errorMsg }</p>
                 <button className='btn btn-primary ms-3'>Sign In</button>
             </form>
         </div>
