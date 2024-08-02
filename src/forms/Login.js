@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 
 const Login = (props) => {
     const setToken = props.setToken
@@ -13,6 +14,7 @@ const Login = (props) => {
     }, []);
 
     useEffect(() => {
+        setErrorMsg('');
     }, [username, password]);
 
     const handleSubmit = async (e) => {
@@ -38,7 +40,7 @@ const Login = (props) => {
     }
 
     return ( 
-        <div>
+        <div className='login'>
             <h1 className='ms-3 my-3'>Sign In</h1>
             <form noValidate onSubmit={handleSubmit}>
                 <div className='form-floating mb-3 mx-3'>
@@ -69,8 +71,9 @@ const Login = (props) => {
                     <label htmlFor='password' className='text-secondary'>Password:</label>
                 </div>
                 <p className='mx-3 text-danger'>{ errorMsg }</p>
-                <button className='btn btn-primary ms-3'>Sign In</button>
+                <button className='btn btn-primary mx-3 mb-3'>Sign In</button>
             </form>
+            <p className='mx-3'>Don't have an account?<Button variant='link' href='register'>Register here</Button></p>
         </div>
      );
 }
