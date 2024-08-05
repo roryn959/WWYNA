@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 
 const Login = (props) => {
-    const setToken = props.setToken
+    const setToken = props.setToken;
     const usernameRef = useRef();
 
     const [username, setUsername] = useState('');

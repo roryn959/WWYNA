@@ -19,6 +19,21 @@ const authenticate = async (username, password) => {
     return false;
 }
 
+app.use('/usernameexists', async (req, res) => {
+    let username = req.body.username;
+    const obj = await fetch(DB_URL);
+    const json = await obj.json();
+    for (user of json){
+        if (user.username===username){
+            res.send('true');
+            res.end();
+            return;
+        }
+    }
+    res.send('false');
+    res.end();
+});
+
 app.use('/login', async (req, res) => {
     let username = req.body.username;
     let password = req.body.password;
@@ -41,4 +56,4 @@ app.use('/login', async (req, res) => {
     res.end();
 });
 
-app.listen(8080, () => console.log('Authentication server running on http://localhost:8080/login'));
+app.listen(8080, () => console.log('Server running on http://localhost:8080/'));
