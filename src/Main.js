@@ -1,8 +1,9 @@
-import useFetch from "./hooks/useFetch";
+import usePeople from "./hooks/usePeople";
 import PeopleList from "./PeopleList";
 
-const Main = () => {
-    const { data: people, isPending, error} = useFetch('http://localhost:8000/people');
+const Main = (props) => {
+    const token = props.token;
+    const { data: people, isPending, error} = usePeople('http://localhost:8000/people', token);
 
     return ( 
         <div className="main">

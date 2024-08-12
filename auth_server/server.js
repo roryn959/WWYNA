@@ -5,15 +5,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-DB_URL = 'http://localhost:8000/logins';
+DB_URL = 'http://localhost:8000/users';
 
 const authenticate = async (username, password) => {
     const res = await fetch(DB_URL);
     const json = await res.json();
     
-    for (cred of json){
-        if (cred.username===username){
-            return cred.password===password;
+    for (user of json){
+        if (user.username===username){
+            return user.password===password;
         }
     }
     return false;

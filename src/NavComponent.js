@@ -1,12 +1,15 @@
 import { Navbar, NavDropdown } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
+import { useNavigate} from "react-router-dom";
 
 const NavComponent = (props) => {
     const [token, setToken] = [props.token, props.setToken];
+    const navigator = useNavigate();
 
     const handleLogout = () => {
         setToken(null);
         localStorage.removeItem('token');
+        navigator('/');
     }
 
     return ( 

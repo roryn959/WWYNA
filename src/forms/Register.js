@@ -96,13 +96,13 @@ const Register = () => {
         }
 
         fetch(
-            'http://localhost:8000/logins',
+            'http://localhost:8000/users',
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     'username': username,
-                    'password': password
+                    'password': password,
                 })
             }
         ).then(() => {

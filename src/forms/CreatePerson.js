@@ -6,7 +6,8 @@ import DetailsInput from './DetailsInput';
 import InputList from './InputList';
 import FurtherText from "./FurtherText";
 
-const CreatePerson = () => {
+const CreatePerson = (props) => {
+    const token = props.token;
     const [fName, setFName] = useState('');
     const [sName, setSName] = useState('');
     const [nickName, setNickName] = useState('');
@@ -29,6 +30,7 @@ const CreatePerson = () => {
 
     const handleSubmit = e => {
         const person = {
+            'creator': token,
             'fName': fName,
             'sName': sName,
             'nickName': nickName,

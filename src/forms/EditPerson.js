@@ -8,7 +8,8 @@ import InputList from './InputList';
 import FurtherText from "./FurtherText";
 import useFetch from "../hooks/useFetch";
 
-const EditPerson = () => {
+const EditPerson = (props) => {
+    const token = props.token;
     const { id } = useParams();
     const navigator = useNavigate();
 
@@ -63,6 +64,7 @@ const EditPerson = () => {
         );
 
         const person = {
+            'creator': token,
             'fName': fName,
             'sName': sName,
             'nickName': nickName,
