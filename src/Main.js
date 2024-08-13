@@ -1,5 +1,5 @@
 import usePeople from "./hooks/usePeople";
-import PeopleList from "./PeopleList";
+import PeopleList from "./components/PeopleList";
 
 const Main = (props) => {
     const token = props.token;

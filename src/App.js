@@ -7,11 +7,11 @@ import useUsername from './hooks/useUsername';
 import Main from './Main';
 import Login from './forms/Login';
 import Register from './forms/Register';
-import NavComponent from './NavComponent';
-import PersonDetails from './PersonDetails';
+import NavComponent from './components/NavComponent';
+import PersonDetails from './components/PersonDetails';
 import CreatePerson from './forms/CreatePerson';
 import EditPerson from './forms/EditPerson';
-import Success from './Success';
+import Success from './components/Success';
 
 // npx json-server --watch data/db.json --port 8000
 // atlas pword: wySRvG0rhRMuGf6A
