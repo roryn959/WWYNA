@@ -95,19 +95,31 @@ const Register = () => {
             return;
         }
 
-        fetch(
-            'http://localhost:8000/users',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    'username': username,
-                    'password': password,
-                })
+        fetch('http://localhost:8080/register').then((res) => {
+            if (!res.ok){
+                setPasswordErrorMsg(res.body);
             }
-        ).then(() => {
             navigator('/success');
         })
+
+        try {
+            const res = await fetch('http://localhost:8080/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({username, password})
+            });
+            const text = await res.text();
+            if (!res.ok){
+                setPasswordErrorMsg(text);
+            } else {
+                navigator('/success');
+            }
+        } catch (err) {
+            console.warn(err);
+            setPasswordErrorMsg('Sorry - something went wrong...');
+        }
     }
 
     return ( 

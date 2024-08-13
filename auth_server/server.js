@@ -1,11 +1,18 @@
 const express = require('express');
 const cors = require('cors');
+const crypto = require('crypto');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
 DB_URL = 'http://localhost:8000/users';
+
+const createSHA256Hash = (s) => {
+    const hash = crypto.createHash('sha256');
+    hash.update(s);
+    return hash.digest('hex');
+}
 
 const authenticate = async (username, password) => {
     const res = await fetch(DB_URL);
@@ -34,9 +41,32 @@ app.use('/usernameexists', async (req, res) => {
     res.end();
 });
 
+app.use('/register', async (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    const register = await fetch(
+        DB_URL,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                'username': username,
+                'password': password,
+            })
+        }
+    );
+    if (!register.ok){
+        res.status(register.status).send('Registration failed...');
+    } else {
+        res.send();
+    }
+    res.end();
+})
+
 app.use('/login', async (req, res) => {
-    let username = req.body.username;
-    let password = req.body.password;
+    const username = req.body.username;
+    const password = req.body.password;
 
     // Missing username or password
     if (!username || !password) {
