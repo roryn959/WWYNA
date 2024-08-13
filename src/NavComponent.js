@@ -4,11 +4,14 @@ import { useNavigate} from "react-router-dom";
 
 const NavComponent = (props) => {
     const [token, setToken] = [props.token, props.setToken];
+    const [username, setUsername] = props.usernameState;
     const navigator = useNavigate();
 
     const handleLogout = () => {
         setToken(null);
         localStorage.removeItem('token');
+        setUsername('');
+        localStorage.removeItem('username');
         navigator('/');
     }
 
@@ -17,7 +20,7 @@ const NavComponent = (props) => {
             <Container fluid>
                 <Navbar.Brand href="/">What Was Your Name Again?</Navbar.Brand>
                 { !!token &&
-                <NavDropdown align='end' title={ token }>
+                <NavDropdown align='end' title={ username }>
                     <NavDropdown.Item onClick={ handleLogout }>Log out</NavDropdown.Item>
                 </NavDropdown>
                 }

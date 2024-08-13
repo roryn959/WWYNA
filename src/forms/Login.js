@@ -5,7 +5,7 @@ const Login = (props) => {
     const setToken = props.setToken;
     const usernameRef = useRef();
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = props.usernameState;
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
 
@@ -27,11 +27,12 @@ const Login = (props) => {
                 },
                 body: JSON.stringify({username, password})
             });
-            const text = await res.text();
             if (!res.ok){
+                const text = await res.text();
                 setErrorMsg(text);
             } else {
-                setToken(text);
+                const json = await res.json();
+                setToken(json.token);
             }
         } catch (error) {
             console.warn(error);

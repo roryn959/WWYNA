@@ -95,13 +95,6 @@ const Register = () => {
             return;
         }
 
-        fetch('http://localhost:8080/register').then((res) => {
-            if (!res.ok){
-                setPasswordErrorMsg(res.body);
-            }
-            navigator('/success');
-        })
-
         try {
             const res = await fetch('http://localhost:8080/register', {
                 method: 'POST',

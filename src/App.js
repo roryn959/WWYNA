@@ -3,6 +3,7 @@ import './index.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import useToken from './hooks/useToken';
+import useUsername from './hooks/useUsername';
 import Main from './Main';
 import Login from './forms/Login';
 import Register from './forms/Register';
@@ -19,14 +20,15 @@ import Success from './Success';
 
 function App() {
   const [token, setToken] = useToken();
+  const usernameState = useUsername();
 
   if (!token){
     return (
     <Router>
       <div className="App">
-        <NavComponent token={token} setToken={setToken}/>
+        <NavComponent token={token} setToken={setToken} usernameState={usernameState}/>
         <Routes>
-          <Route exact path='/' element={<Login setToken={setToken}/>}/>
+          <Route exact path='/' element={<Login setToken={setToken} usernameState={usernameState}/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/success' element={<Success/>}/>
         </Routes>
@@ -38,7 +40,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavComponent token={token} setToken={setToken}/>
+        <NavComponent token={token} setToken={setToken} usernameState={usernameState}/>
         <Routes>
           <Route exact path='/' element={<Main token={token}/>}/>
           <Route path='/people/:id' element={<PersonDetails token={token}/>}/>
