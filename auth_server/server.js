@@ -21,7 +21,7 @@ const authenticate = async (username, password) => {
     for (user of json){
         if (user.username===username){
             if (user.password===password){
-                return user.id;
+                return user.userID;
             } else {
                 return null;
             }
@@ -49,6 +49,7 @@ app.use('/register', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     const hashedPassword = createSHA256Hash(password);
+    const hashedUsername = createSHA256Hash(username);
 
     const register = await fetch(
         DB_URL,
@@ -58,6 +59,7 @@ app.use('/register', async (req, res) => {
             body: JSON.stringify({
                 'username': username,
                 'password': hashedPassword,
+                'userID': hashedUsername,
             })
         }
     );
@@ -81,14 +83,14 @@ app.use('/login', async (req, res) => {
         return;
     }
     // If incorrect username or password
-    const auth = await authenticate(username, hashedPassword);
-    if (!!!auth){
+    const userID = await authenticate(username, hashedPassword);
+    if (!!!userID){
         res.status(401).send('Invalid username or password.');
         res.end();
         return;
     }
     // Correctly authenticated -- return user_id as token
-    res.send({token: auth, username: username});
+    res.send({token: userID, username: username});
     res.end();
 });
 
