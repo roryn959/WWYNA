@@ -1,15 +1,20 @@
 import { useEffect, useState } from 'react';
 
-const useUsername = () => {
+const useUsername = (token) => {
     const [username, setUsername] = useState(() => {
         const savedUsername = localStorage.getItem('username');
         const username = JSON.parse(savedUsername);
-        return username;
+        if (username){
+            return username;
+        }
+        return undefined;
     });
 
     useEffect(() => {
-        localStorage.setItem('username', JSON.stringify(username));
-      }, [username]);
+        if (token){
+            localStorage.setItem('username', JSON.stringify(username));
+        }
+      }, [username, token]);
 
     return [username, setUsername];
 }

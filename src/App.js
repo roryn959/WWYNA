@@ -20,7 +20,7 @@ import Success from './components/Success';
 
 function App() {
   const [token, setToken] = useToken();
-  const usernameState = useUsername();
+  const usernameState = useUsername(token);
 
   if (!token){
     return (
