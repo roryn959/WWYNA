@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import useToken from './hooks/useToken';
 import useUsername from './hooks/useUsername';
@@ -12,11 +11,6 @@ import PersonDetails from './components/PersonDetails';
 import CreatePerson from './forms/CreatePerson';
 import EditPerson from './forms/EditPerson';
 import Success from './components/Success';
-
-// npx json-server --watch data/db.json --port 8000
-// atlas pword: wySRvG0rhRMuGf6A
-// connection string: mongodb+srv://roryn959:wySRvG0rhRMuGf6A@wwyna.uyrqbi9.mongodb.net/?retryWrites=true&w=majority&appName=WWYNA
-// api key: e1wiGdBaewUSgUYzdfe5iD5hPFIgPxpM19O7ivNzLYkdPPcJnXt1vqIpxWrjgePN
 
 function App() {
   const [token, setToken] = useToken();

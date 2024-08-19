@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const usePeople = (url, creator) => {
+const usePeople = (token) => {
 
     const [data, setData] = useState(null);
     const [isPending, setIsPending] = useState(true);
@@ -8,23 +8,24 @@ const usePeople = (url, creator) => {
 
     useEffect(() => {
         const fetchData = async () => {
-                const res = await fetch(url);
+                const res = await fetch('http://localhost:8080/getPeople', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({token})
+                });
                 if (!res.ok){
                     throw Error('Could not fetch data :(');
+                } else{
+                    const json = await res.json();
+                    setData(json);
+                    setError(null);
                 }
-                const json = await res.json();
-                const people = [];
-                for (let person of json){
-                    if (person.creator===creator){
-                        people.push(person);
-                    }
-                }
-                setData(people);
                 setIsPending(false);
-                setError(null);
         }
         fetchData();
-    }, [url, creator]);
+    }, [token]);
 
     return { data, isPending, error }
 }

@@ -3,7 +3,7 @@ import PeopleList from "./components/PeopleList";
 
 const Main = (props) => {
     const token = props.token;
-    const { data: people, isPending, error} = usePeople('http://localhost:8000/people', token);
+    const { data: people, isPending, error} = usePeople(token);
 
     return ( 
         <div className="main">

@@ -22,7 +22,7 @@ const EditPerson = (props) => {
     const [characteristics, setCharacteristics] = useState([]);
     const [further, setFurther] = useState('');
 
-    const {data: person, error, isPending } = useFetch('http://localhost:8000/people/' + id);
+    const {data: person, error, isPending } = useFetch(id);
 
     useEffect(() => {
         if (person){
@@ -55,14 +55,7 @@ const EditPerson = (props) => {
                 f.classList.add('is-invalid')
             });
     }
-    const handleSubmit = e => {
-        fetch(
-            'http://localhost:8000/people/' + id,
-            {
-                method: 'DELETE'
-            }
-        );
-
+    const handleSubmit = async (e) => {
         const person = {
             'creator': token,
             'fName': fName,
@@ -81,16 +74,17 @@ const EditPerson = (props) => {
             return;
         }
 
-        fetch(
-            'http://localhost:8000/people',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify(person)
-            }
-        ).then(() => {
+        const res = await fetch('http://localhost:8080/editPerson', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id, person})
+        });
+        
+        if (res.ok){
             navigator('/');
-        })
+        }
     }
 
     return (

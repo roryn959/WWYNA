@@ -8,8 +8,8 @@ const PeopleList = ({ people }) => {
         <div className="peoplelist">
             <ul className='list-group list-group-flush'>
                 { people.map((person) => (
-                    <li key={ person.id } className='list-group-item list-group-item-action'>
-                        <Link to={ `/people/${person.id}` }>
+                    <li key={ person._id } className='list-group-item list-group-item-action'>
+                        <Link to={ `/people/${person._id}` }>
                             <Row>
                                 <Col md=''>
                                     <h1 className='display-5'>{ person.fName } {!!person.nickName && <i>"{person.nickName}"</i>} { person.sName }</h1>

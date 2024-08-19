@@ -28,7 +28,7 @@ const CreatePerson = (props) => {
             });
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         const person = {
             'creator': token,
             'fName': fName,
@@ -47,16 +47,17 @@ const CreatePerson = (props) => {
             return;
         }
 
-        fetch(
-            'http://localhost:8000/people',
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json'},
-                body: JSON.stringify(person)
-            }
-        ).then(() => {
-            navigator('/');
+        const res = await fetch('http://localhost:8080/createPerson', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({person})
         });
+        
+        if (res.ok){
+            navigator('/');
+        }
     }
 
     return (

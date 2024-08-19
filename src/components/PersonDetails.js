@@ -5,7 +5,8 @@ import useFetch from "../hooks/useFetch.js";
 
 const PersonDetails = () => {
     const { id } = useParams();
-    const {data: person, error, isPending } = useFetch('http://localhost:8000/people/' + id);
+    const {data: person, error, isPending } = useFetch(id);
+
     const navigator = useNavigate();
 
     let intIdx = 0;
@@ -19,15 +20,18 @@ const PersonDetails = () => {
         }
     }
 
-    const handleDelete = () => {
-        fetch(
-            'http://localhost:8000/people/' + person.id,
-            {
-                method: 'DELETE' 
-            }
-        ).then(() => {
+    const handleDelete = async () => {
+        const res = await fetch('http://localhost:8080/deletePerson', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id})
+        });
+        
+        if (res.ok){
             navigator('/');
-        })
+        }
     }
 
     return ( 
