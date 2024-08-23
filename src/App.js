@@ -12,6 +12,7 @@ import CreatePerson from './forms/CreatePerson';
 import EditPerson from './forms/EditPerson';
 import Success from './components/Success';
 import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 
 function App() {
   const [token, setToken] = useToken();
@@ -28,6 +29,7 @@ function App() {
           <Route path='/success' element={<Success/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>
+        <Footer/>
       </div>
     </Router>
     );
@@ -43,6 +45,7 @@ function App() {
           <Route path='/createPerson' element={<CreatePerson token={token}/>}/>
           <Route path='/people/:id/editPerson' element={<EditPerson token={token}/>}/>
         </Routes>
+        <Footer/>
       </div>
     </Router>
   );
