@@ -18,7 +18,14 @@ const NavComponent = (props) => {
     return ( 
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
-                <Navbar.Brand href="/">What Was Your Name Again?</Navbar.Brand>
+                <Navbar.Brand href="/">
+                    <p style={{
+                        "color": "red",
+                        "fontFamily": "arial black",
+                        "fontSize": "30px",
+                        "margin": "0px"
+                    }}>What Was Your Name Again?</p>
+                </Navbar.Brand>
                 { !!token &&
                 <NavDropdown align='end' title={ username }>
                     <NavDropdown.Item onClick={ handleLogout }>Log out</NavDropdown.Item>
