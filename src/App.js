@@ -11,6 +11,7 @@ import PersonDetails from './components/PersonDetails';
 import CreatePerson from './forms/CreatePerson';
 import EditPerson from './forms/EditPerson';
 import Success from './components/Success';
+import NotFound from './components/NotFound';
 
 function App() {
   const [token, setToken] = useToken();
@@ -25,6 +26,7 @@ function App() {
           <Route exact path='/' element={<Login setToken={setToken} usernameState={usernameState}/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/success' element={<Success/>}/>
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </div>
     </Router>
