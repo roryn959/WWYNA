@@ -21,7 +21,7 @@ function App() {
   if (!token){
     return (
     <Router>
-      <div className="App">
+      <div className="App min-vh-100">
         <NavComponent token={token} setToken={setToken} usernameState={usernameState}/>
         <Routes>
           <Route exact path='/' element={<Login setToken={setToken} usernameState={usernameState}/>}/>
@@ -37,7 +37,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className="App min-vh-100">
         <NavComponent token={token} setToken={setToken} usernameState={usernameState}/>
         <Routes>
           <Route exact path='/' element={<Main token={token}/>}/>
