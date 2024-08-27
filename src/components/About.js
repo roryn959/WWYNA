@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const About = () => {
+    const navigator = useNavigate();
     return ( 
         <div className='about m-3'>
             <h1 className='pb-3'>About This Project</h1>
@@ -13,6 +16,13 @@ const About = () => {
                 so that they can stop constantly asking the question:
             </h5>
             <h4><i>"Sorry - what was your name again?</i></h4>
+            <button
+                className="btn btn-primary mt-3"
+                onClick={e => {
+                    e.preventDefault();
+                    navigator('/');
+                }}
+            >Return</button>
         </div>
      );
 }
