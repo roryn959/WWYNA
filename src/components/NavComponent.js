@@ -1,4 +1,4 @@
-import { Navbar, NavDropdown } from 'react-bootstrap';
+import { Navbar, NavDropdown, Button } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import { useNavigate} from "react-router-dom";
 
@@ -15,6 +15,10 @@ const NavComponent = (props) => {
         navigator('/');
     }
 
+    const handleAbout = () => {
+        navigator('/about');
+    }
+
     return ( 
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
@@ -27,9 +31,13 @@ const NavComponent = (props) => {
                     }}>What Was Your Name Again?</p>
                 </Navbar.Brand>
                 { !!token &&
-                <NavDropdown align='end' title={ username } className='bg-body-primary'>
-                    <NavDropdown.Item onClick={ handleLogout }>Log out</NavDropdown.Item>
-                </NavDropdown>
+                <Button>
+                    <NavDropdown align='end' title={ username } className='bg-body-primary'>
+                        <NavDropdown.Item onClick={ handleAbout }>About this project</NavDropdown.Item>
+                        <hr className='dropdown-divider'/>
+                        <NavDropdown.Item onClick={ handleLogout }>Log out</NavDropdown.Item>
+                    </NavDropdown>
+                </Button>
                 }
             </Container>
         </Navbar>
