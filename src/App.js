@@ -22,7 +22,7 @@ function App() {
   if (!token){
     return (
     <Router>
-      <div className="App min-vh-100">
+      <div className="App d-flex flex-column min-vh-100">
         <NavComponent token={token} setToken={setToken} usernameState={usernameState}/>
         <Routes>
           <Route exact path='/' element={<Login setToken={setToken} usernameState={usernameState}/>}/>
