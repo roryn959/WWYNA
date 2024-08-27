@@ -6,9 +6,8 @@ import linkedin from '../assets/linkedin.png';
 // bg-body-tertiary fixed-bottom text-center d-none d-md-block mt-5 pt-1
 const Footer = () => {
     return ( 
-        <div className="footer">
-            <footer>
-                <Container fluid className="navbar navbar-fixed-bottom bg-body-tertiary justify-content-center">
+            <footer className='footer mt-auto text-center '>
+                <Container fluid className="bg-body-tertiary justify-content-center">
                     <h4 className="mt-3">Created by Rory Nicholas</h4>
                     <Container fluid className="justify-content-center">
                         <a href="mailto:roryn959@icloud.com"><img src={mail} height={25} alt="roryn959@icloud.com" className="m-2"/></a>
@@ -18,7 +17,6 @@ const Footer = () => {
                     <p className="mb-3">Created using react and bootstrap.</p>
                 </Container>
             </footer>
-        </div>
      );
 }
  

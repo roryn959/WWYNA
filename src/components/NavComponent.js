@@ -27,7 +27,7 @@ const NavComponent = (props) => {
                     }}>What Was Your Name Again?</p>
                 </Navbar.Brand>
                 { !!token &&
-                <NavDropdown align='end' title={ username }>
+                <NavDropdown align='end' title={ username } className='bg-body-primary'>
                     <NavDropdown.Item onClick={ handleLogout }>Log out</NavDropdown.Item>
                 </NavDropdown>
                 }

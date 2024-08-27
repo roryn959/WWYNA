@@ -6,7 +6,7 @@ const Main = (props) => {
     const { data: people, isPending, error} = usePeople(token);
 
     return ( 
-        <div className="main">
+        <div className="main flex-shrink-0">
             { error && <div>{ error }</div>}
             { isPending && <div>Loading</div>}
             { people && <PeopleList people={people} /> }
