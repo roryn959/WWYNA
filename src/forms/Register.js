@@ -61,7 +61,7 @@ const Register = () => {
 
     const checkUsernameExists = async () => {
         try {
-            const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/usernameexists`, {
+            const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/usernameexists`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -96,7 +96,7 @@ const Register = () => {
         }
 
         try {
-            const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/register`, {
+            const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

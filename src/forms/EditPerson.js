@@ -74,7 +74,7 @@ const EditPerson = (props) => {
             return;
         }
 
-        const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/editPerson`, {
+        const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/editPerson`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

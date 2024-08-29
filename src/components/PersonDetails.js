@@ -21,7 +21,7 @@ const PersonDetails = () => {
     }
 
     const handleDelete = async () => {
-        const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/deletePerson`, {
+        const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/deletePerson`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
