@@ -20,7 +20,7 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('http://localhost:8080/login', {
+            const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

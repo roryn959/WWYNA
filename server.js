@@ -166,4 +166,4 @@ app.use('/createPerson', async (req, res) => {
     res.end();
 })
 
-app.listen(8080, () => console.log('Server running on http://localhost:8080/'));
+app.listen(process.env.REACT_APP_SERVER_PORT, () => console.log('Server running on', process.env.REACT_APP_SERVER_PORT));

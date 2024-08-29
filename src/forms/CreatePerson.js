@@ -47,7 +47,7 @@ const CreatePerson = (props) => {
             return;
         }
 
-        const res = await fetch('http://localhost:8080/createPerson', {
+        const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/createPerson`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -8,7 +8,8 @@ const usePeople = (token) => {
 
     useEffect(() => {
         const fetchData = async () => {
-                const res = await fetch('http://localhost:8080/getPeople', {
+            try {
+                const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/getPeople`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -23,6 +24,10 @@ const usePeople = (token) => {
                     setError(null);
                 }
                 setIsPending(false);
+            } catch (err) {
+                setError(err.body);
+                setIsPending(false);
+            }
         }
         fetchData();
     }, [token]);

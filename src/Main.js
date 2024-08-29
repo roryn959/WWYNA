@@ -8,7 +8,7 @@ const Main = (props) => {
     return ( 
         <div className="main flex-shrink-0">
             { error && <div>{ error }</div>}
-            { isPending && <div>Loading</div>}
+            { isPending && <div className='ms-3'><h3>Loading...</h3></div>}
             { people && <PeopleList people={people} /> }
         </div>
      );

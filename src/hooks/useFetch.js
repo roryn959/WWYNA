@@ -8,7 +8,7 @@ const useFetch = (personID) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://localhost:8080/getPerson', {
+                const res = await fetch(`http://localhost:${process.env.REACT_APP_SERVER_PORT}/getPerson`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

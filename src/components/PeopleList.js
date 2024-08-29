@@ -9,12 +9,9 @@ const PeopleList = ({ people }) => {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        console.log(search);
         if (!!search){
-            console.log('sorting')
             setSortedPeople(sortPeople(search, people));
         } else {
-            console.log('not sorting')
             setSortedPeople(people);
         }
     }
