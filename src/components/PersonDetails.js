@@ -117,6 +117,14 @@ const PersonDetails = () => {
                             </div>
                         </Col>
                     </Row>
+                    <Container className="bg-light border">
+                        <h1 className="display-6 m-3 text-center">
+                            Further Information
+                        </h1>
+                        <h3 className={ `text-center text-break bg-white border p-3 ${conditionalDisplay(person.further)}` }>
+                            { !person.further && 'Some more information...' }{ person.further }
+                        </h3>
+                    </Container>
                     <hr className="my-4"/>
                 </Container>
                 <div className='d-flex justify-content-center mb-4'>
