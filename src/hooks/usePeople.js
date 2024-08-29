@@ -9,7 +9,7 @@ const usePeople = (token) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/getPeople`, {
+                const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/getPeople`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

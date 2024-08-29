@@ -20,7 +20,7 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/login`, {
+            const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
