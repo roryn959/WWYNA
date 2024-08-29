@@ -24,7 +24,10 @@ const createSHA256Hash = (s) => {
 const authenticate = async (username, password) => {
     const query = { username: username };
     const user = await users.findOne(query);
-    if (user.password=password){
+    if (!!!user){
+        return null;
+    }
+    if (user.password==password){
         return user.userID;
     }
     return null;
