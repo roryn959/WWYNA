@@ -96,7 +96,7 @@ const Register = () => {
         }
 
         try {
-            const res = await fetch(`http://${process.env.REACT_APP_SERVER_URL}/register`, {
+            const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
