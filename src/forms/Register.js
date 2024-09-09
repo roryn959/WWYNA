@@ -10,6 +10,7 @@ const Register = () => {
     const [usernameErrorMsg, setUsernameErrorMsg] = useState('');
     const [password, setPassword] = useState('');
     const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         usernameRef.current.focus();
@@ -90,8 +91,10 @@ const Register = () => {
             return;
         }
 
+        setLoading(true);
         if (await checkUsernameExists()){
             setUsernameErrorMsg('Username already exists!');
+            setLoading(false);
             return;
         }
 
@@ -112,6 +115,8 @@ const Register = () => {
         } catch (err) {
             console.warn(err);
             setPasswordErrorMsg('Sorry - something went wrong...');
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -148,7 +153,7 @@ const Register = () => {
                     <label htmlFor='password' className='text-secondary'>Password:</label>
                     <p className='mx-3 text-danger'>{ passwordErrorMsg }</p>
                 </div>
-                <button className='btn btn-primary mx-3 mb-3'>Sign In</button>
+                <button className='btn btn-primary mx-3 mb-3'>Register { !!loading && <div className="spinner-border spinner-border-sm"></div> }</button>
             </form>
         </div>
      );

@@ -8,6 +8,7 @@ const Login = (props) => {
     const [username, setUsername] = props.usernameState;
     const [password, setPassword] = useState('');
     const [errorMsg, setErrorMsg] = useState('');
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         usernameRef.current.focus();
@@ -19,6 +20,7 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         try {
             const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/login`, {
                 method: 'POST',
@@ -37,6 +39,8 @@ const Login = (props) => {
         } catch (error) {
             console.warn(error);
             setErrorMsg('Sorry - something went wrong...');
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -72,7 +76,7 @@ const Login = (props) => {
                     <label htmlFor='password' className='text-secondary'>Password:</label>
                 </div>
                 <p className='mx-3 text-danger'>{ errorMsg }</p>
-                <button className='btn btn-primary mx-3 mb-3'>Sign In</button>
+                <button className='btn btn-primary mx-3 mb-3'>Sign In { !!loading && <div className="spinner-border spinner-border-sm"></div> }</button>
             </form>
             <p className='mx-3'>Don't have an account?<Button variant='link' href='register'>Register here</Button></p>
         </div>
