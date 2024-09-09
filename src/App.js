@@ -21,7 +21,13 @@ import About from './components/About';
 function App() {
   const [token, setToken] = useToken();
   const usernameState = useUsername(token);
-  const [showToast, setShowToast] = useState(true);
+
+  const [showToast, setShowToast] = useState(localStorage.getItem('toastClosed')===null);
+
+  const closeToast = () => {
+    setShowToast(false);
+    localStorage.setItem('toastClosed', 'true');
+  }
 
   if (!token){
     return (
@@ -39,7 +45,7 @@ function App() {
         <Footer/>
 
         <ToastContainer position='top-end' className='m-3'>
-          <Toast className='ms-3' show={showToast} onClose={() => setShowToast(false)}>
+          <Toast className='ms-3' show={showToast} onClose={closeToast}>
             <Toast.Header className='me-2'>
               <img src={clock} height={25} alt="roryn959@icloud.com" className="m-2"/>
               <strong className="me-auto text-primary">Server Spinup</strong>
@@ -78,7 +84,7 @@ function App() {
         <Footer/>
 
         <ToastContainer position='top-end' className='m-3'>
-          <Toast className='ms-3' show={showToast} onClose={() => setShowToast(false)}>
+          <Toast className='ms-3' show={showToast} onClose={closeToast()}>
             <Toast.Header className='me-2'>
               <img src={clock} height={25} alt="roryn959@icloud.com" className="m-2"/>
               <strong className="me-auto text-primary">Server Spinup</strong>
