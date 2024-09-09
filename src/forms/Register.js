@@ -10,6 +10,7 @@ const Register = () => {
     const [usernameErrorMsg, setUsernameErrorMsg] = useState('');
     const [password, setPassword] = useState('');
     const [passwordErrorMsg, setPasswordErrorMsg] = useState('');
+    const [secondPassword, setSecondPassword] = useState('');
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -22,7 +23,7 @@ const Register = () => {
 
     useEffect(() => {
         setPasswordErrorMsg('');
-    }, [password]);
+    }, [password, secondPassword]);
 
     const alphanumeric = (s) => {
         for (let i=0; i<s.length; i++){
@@ -90,6 +91,10 @@ const Register = () => {
         if (!validPassword()){
             return;
         }
+        if (!(password === secondPassword)){
+            setPasswordErrorMsg('Passwords do not match.')
+            return;
+        }
 
         setLoading(true);
         if (await checkUsernameExists()){
@@ -151,6 +156,19 @@ const Register = () => {
                         required
                     />
                     <label htmlFor='password' className='text-secondary'>Password:</label>
+                </div>
+                <div className='form-floating mb-3 mx-3'>
+                    <input
+                        type='password'
+                        className='form-control needs-valid'
+                        id='secondPassword'
+                        placeholder='Confirm Password'
+                        autoComplete='off'
+                        onChange={(e) => setSecondPassword(e.target.value)}
+                        value={secondPassword}
+                        required
+                    />
+                    <label htmlFor='password' className='text-secondary'>Confirm Password:</label>
                     <p className='mx-3 text-danger'>{ passwordErrorMsg }</p>
                 </div>
                 <button className='btn btn-primary mx-3 mb-3'>Register { !!loading && <div className="spinner-border spinner-border-sm"></div> }</button>
